@@ -2,14 +2,43 @@
 
 </style>
 <template>
-  <view class="container"></view>
+  <view class="container">
+     <swiper class="swiper" indicator-active-color="{{indicatorActiveColor}}" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="true">
+     </swiper>
+  </view>
 </template>
 
 <script>
 import wepy from 'wepy'
 export default class Index extends wepy.page {
   config = {
-    navigationBarTitleText: '农资商城'
+    navigationBarTitleText: '农资商城213'
   };
+  data = {
+    indicatorDots: true,
+    autoplay: true,
+    interval: 3000,
+    duration: 1000,
+    indicatorActiveColor: '#fff',
+    // 轮播图集合
+    bigList: []
+  };
+  async getBigList() {
+    // 异步测试通过
+    await setTimeout(() => {
+      this.bigList = [
+        'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
+        'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
+        'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
+      ]
+      this.$apply()
+      console.log(this.bigList)
+    }, 1200)
+  }
+  onLoad() {
+    // 注册个钩子
+    // let that = this
+    this.getBigList()
+  }
 }
 </script>
