@@ -1,0 +1,36 @@
+<template>
+  <view class="category">
+    我是分类页面
+  </view>
+</template>
+<script>
+  import wepy from 'wepy'
+
+  export default class Category extends wepy.page {
+    config = {
+      navigationBarTitleText: '分类',
+    }
+    components = {
+
+    }
+    data = {
+      windowHeight: 0,
+      list: {}
+    }
+    computed = {
+
+    }
+    methods = {
+
+    }
+    events = {
+
+    }
+  }
+</script>
+<style lang="less">
+  .category {
+    display: flex;
+    position: relative;
+  }
+</style>

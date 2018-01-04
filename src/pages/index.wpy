@@ -1,10 +1,21 @@
-<style lang="less">
-
-</style>
 <template>
   <view class="container">
-     <swiper class="swiper" indicator-active-color="{{indicatorActiveColor}}" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="true">
+     <swiper class="swiper" indicator-active-color="{{indicatorActiveColor}}"  indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="true">
+       <block wx:for="{{bigList}}" wx:key="key">
+         <swiper-item>
+          <image src="{{item}}" class="swiper-image" @tap="goToAdvert('http://jerryshi.com')"></image>
+         </swiper-item>
+       </block>
      </swiper>
+
+     <view class="pos">
+       <view>
+         <navigator class="search_content" open-type="navigate">
+
+         </navigator>
+       </view>
+     </view>
+
   </view>
 </template>
 
@@ -13,7 +24,7 @@ import wepy from 'wepy'
 export default class Index extends wepy.page {
   config = {
     navigationBarTitleText: '农资商城213'
-  };
+  }
   data = {
     indicatorDots: true,
     autoplay: true,
@@ -22,7 +33,8 @@ export default class Index extends wepy.page {
     indicatorActiveColor: '#fff',
     // 轮播图集合
     bigList: []
-  };
+  }
+
   async getBigList() {
     // 异步测试通过
     await setTimeout(() => {
@@ -32,13 +44,44 @@ export default class Index extends wepy.page {
         'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
       ]
       this.$apply()
-      console.log(this.bigList)
-    }, 1200)
+    }, 1000)
   }
+
   onLoad() {
     // 注册个钩子
     // let that = this
     this.getBigList()
   }
+
+  methods = {
+    goToAdvert(url) {
+      if (url.length === 0) {
+        return
+      }
+      wepy.navigateTo({ url })
+    }
+  };
 }
 </script>
+<style lang="less">
+.swiper {
+  height: 348rpx;
+  width: 100%;
+}
+
+.slide-image {
+  width: 100%;
+  height: 100%;
+}
+
+.pos {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  .search_content {
+    background: rgba(0,0,0,.1);
+    border: 1px solid #efefef;
+  }
+}
+</style>
